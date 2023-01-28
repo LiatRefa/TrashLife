@@ -3195,8 +3195,20 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5058276932948358888, guid: a726655c0289482449535855b8632b22, type: 3}
+      propertyPath: m_Name
+      value: Emitter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058276932948358888, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058276932948358902, guid: a726655c0289482449535855b8632b22, type: 3}
+      propertyPath: PlayEvent
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058276932948358902, guid: a726655c0289482449535855b8632b22, type: 3}
+      propertyPath: StopEvent
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5058276934489809142, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: m_Layer
