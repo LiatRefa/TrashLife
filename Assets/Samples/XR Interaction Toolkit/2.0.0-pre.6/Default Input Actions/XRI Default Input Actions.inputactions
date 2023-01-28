@@ -787,6 +787,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Move1",
+                    "type": "Value",
+                    "id": "6d41ff15-f24e-42e6-960e-f0abb32c7d8b",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1161,6 +1170,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Pinch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c743f871-a176-44df-9d6b-b566cbc07f42",
+                    "path": "<XRController>{RightHand}/primary2DAxis",
+                    "interactions": "",
+                    "processors": "StickDeadzone",
+                    "groups": "Continuous Move",
+                    "action": "Move1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

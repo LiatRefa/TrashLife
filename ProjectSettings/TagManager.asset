@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hand
+  - ElevatorButtonOpen
+  - ElevatorNumericButton
+  - ElevatorGoButton
+  - Elevator
+  - Paper
   layers:
   - Default
   - TransparentFX
