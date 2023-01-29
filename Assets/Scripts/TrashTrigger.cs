@@ -11,7 +11,7 @@ public class TrashTrigger : MonoBehaviour
     {
         if (other.CompareTag("Paper"))
         {
-            Paper paper = other.GetComponent<Paper>();
+            Paper paper = other.gameObject.transform.parent.GetComponent<Paper>();
             paper.OpenPaper();
             paper.GetComponent<Rigidbody>().AddForce(-Camera.main.gameObject.transform.forward * paperForcePush);
         }
