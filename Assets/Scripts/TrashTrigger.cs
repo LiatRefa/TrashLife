@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class TrashTrigger : MonoBehaviour
 {
-    public float paperForcePush = 10f;
+    public float paperForcePush = 100f;
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Paper"))
