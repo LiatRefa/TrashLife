@@ -10,7 +10,7 @@ void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-             Vector3 runDirection = transorm.position - other.transorm.position;
+            Vector3 runDirection = transform.position - other.transform.position;
             GetComponent<Rigidbody>().AddForce(runDirection * speed);
         }
     }

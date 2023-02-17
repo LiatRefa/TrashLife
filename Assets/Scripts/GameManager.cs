@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 using Object = UnityEngine.Object;
-
+using Utils;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -16,10 +17,14 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Animator _startAnimator;
     private float gameTimer;
     private float maxTime = 60 * 10f; // 10 mins
-    [SerializeField] private GameObject player;
+    public GameObject player;
     [SerializeField] private XRDirectInteractor LeftHand;
     [SerializeField] private XRDirectInteractor RightHand;
     public StudioEventEmitter EventEmitter;
+    public SerializableStack<Texture> paperTextures; // In case we decide to use a stack for the textures instead of the papers themselves
+    public Trash trash;
+
+    public int gameState = 0;
 
     public enum Scenes
     {
@@ -41,10 +46,10 @@ public class GameManager : Singleton<GameManager>
     }
     void OnMainSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Invoke("StupidThing", 2);
         if (scene.name == "MAIN")
         {
             LoadScene(Scenes.MainMenu);
-            Invoke("StupidThing", 2);
         }
     }
 
@@ -104,5 +109,11 @@ public class GameManager : Singleton<GameManager>
     public void Win()
     {
         AudioManager.Instance.PlaySound(AudioManager.Sounds.Win);
+    }
+
+    public void NextLevel()
+    {
+        gameState += 1;
+        trash.firstEncounter = true;
     }
 }

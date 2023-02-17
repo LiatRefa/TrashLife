@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
-
+using Utils;
 public class AudioManager : Singleton<AudioManager>
 {
    public FMODUnity.EventReference[] eventReferences;

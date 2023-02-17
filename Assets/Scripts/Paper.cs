@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Utils;
 using UnityEngine;
 
 public class Paper : MonoBehaviour
@@ -8,7 +9,6 @@ public class Paper : MonoBehaviour
    [SerializeField] private Renderer paperRenderer;
    [SerializeField] private GameObject openedPaper;
    [SerializeField] private GameObject closedPaper;
-   
    private Texture paperTxt;
 
    public void Start()
@@ -24,5 +24,6 @@ public class Paper : MonoBehaviour
       closedPaper.SetActive(false);
       openedPaper.SetActive(true);
       openedPaper.GetComponent<Renderer>().material.SetTexture("_MainTex", paperTxt);
+      List<Texture> lst = new List<Texture>();
    }
 }
