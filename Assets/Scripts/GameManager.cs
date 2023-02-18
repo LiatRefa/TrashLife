@@ -20,11 +20,13 @@ public class GameManager : Singleton<GameManager>
     public GameObject player;
     [SerializeField] private XRDirectInteractor LeftHand;
     [SerializeField] private XRDirectInteractor RightHand;
+    [SerializeField] private LevelManager levelManager;
     public StudioEventEmitter EventEmitter;
     public SerializableStack<Texture> paperTextures; // In case we decide to use a stack for the textures instead of the papers themselves
     public Trash trash;
 
     public int gameState = 0;
+    public bool SetupReady { get; set; }
 
     public enum Scenes
     {
@@ -50,6 +52,19 @@ public class GameManager : Singleton<GameManager>
         if (scene.name == "MAIN")
         {
             LoadScene(Scenes.MainMenu);
+        }
+        // if (scene.name == "MainOffice")
+        // {
+        //     StartCoroutine(WaitForLevelManager());
+        // }
+        
+    }
+    
+    private IEnumerator WaitForLevelManager()
+    {
+        while (LevelManager.instance == null)
+        {
+            yield return null;
         }
     }
 
@@ -113,7 +128,9 @@ public class GameManager : Singleton<GameManager>
 
     public void NextLevel()
     {
+        SetupReady = false;
         gameState += 1;
+        LevelManager.instance.LevelSetup(gameState);
         trash.firstEncounter = true;
     }
 }

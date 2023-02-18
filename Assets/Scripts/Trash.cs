@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Trash : MonoBehaviour
 {
     #region BlockerMatrix
+
     [System.Serializable]
     public class Cell
     {
@@ -32,15 +34,17 @@ public class Trash : MonoBehaviour
 
         public Array this[int index] => arrays[index];
     }
-    
+
     #endregion
 
     private List<Action> gameStatesFunctions = new List<Action>();
+    [SerializeField] private float minX, minZ, maxX, maxZ;
     [SerializeField] private Transform leftCorner;
     [SerializeField] private Transform rightCorner;
+    [SerializeField] private Transform level2Pos;
     [SerializeField] private Matrix blockers;
-
     [SerializeField] private GameObject entranceBlocker;
+    [SerializeField] private Animator level4Animation;
     private Transform playerTransform;
     private Vector3 targetPosition;
 
@@ -50,10 +54,11 @@ public class Trash : MonoBehaviour
 
     private bool isMoving;
     public bool firstEncounter = true;
-    
+
     private void Start()
     {
-        gameStatesFunctions.AddRange(new Action[]{Idle, RunAwayToTheCorner, BlockEntrance, RandomMove, HitDrawerAndBlock, FinalDialog });
+        gameStatesFunctions.AddRange(new Action[]
+            { Idle, RunAwayToTheCorner, BlockEntrance, RandomMove, HitDrawerAndBlock, FinalDialog });
         playerTransform = GameManager.Instance.player.transform;
         targetPosition = leftCorner.position;
         entranceBlocker.SetActive(false);
@@ -63,16 +68,17 @@ public class Trash : MonoBehaviour
     void Update()
     {
         playerTransform = GameManager.Instance.player.transform;
+        if(!GameManager.Instance.SetupReady) return;
         gameStatesFunctions[GameManager.Instance.gameState]();
     }
+
     /// <summary>
     /// Do nothing, for game state = 0
     /// </summary>
     private void Idle()
     {
-        
     }
-    
+
     /// <summary>
     /// Every time the player gets too close run away to the other corner.
     /// </summary>
@@ -108,70 +114,109 @@ public class Trash : MonoBehaviour
             if (isMoving)
             {
                 // Move the trash can towards the target position
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime); 
+                transform.position =
+                    Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
                 if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
                 {
                     isMoving = false;
                 }
-                
             }
         }
     }
-    
+
     /// <summary>
     /// Runs away from player and entrance becomes smaller the closer the player gets.
     /// </summary>
     private void BlockEntrance()
     {
-
         if (firstEncounter)
         {
             entranceBlocker.SetActive(true);
-            firstEncounter = false;
-        }
-        for (int i = 0; i < ThresholdForBlocking.Length; i++)
-        {
-            float currentDis = ThresholdForBlocking[i];
-            if (Vector3.Distance(transform.position, playerTransform.position) < currentDis)
+            // Move towards the center
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, level2Pos.position) < 0.1f)
             {
-                Array currentBlocker = blockers[i];
-                for (int j = 0; j <currentBlocker.Count; j++)
-                {
-                   currentBlocker[j].blocker.SetActive(true);
-                }
+                firstEncounter = false;
             }
-            else
+        }
+        else
+        {
+            for (int i = 0; i < ThresholdForBlocking.Length; i++)
             {
-                Array currentBlocker = blockers[i];
-                for (int j = 0; j <currentBlocker.Count; j++)
+                float currentDis = ThresholdForBlocking[i];
+                // Close the entrance if too close
+                if (Vector3.Distance(transform.position, playerTransform.position) < currentDis)
                 {
-                    currentBlocker[j].blocker.SetActive(false);
+                    Array currentBlocker = blockers[i];
+                    for (int j = 0; j < currentBlocker.Count; j++)
+                    {
+                        currentBlocker[j].blocker.SetActive(true);
+                    }
+                }
+                // Open the entrance when farther away
+                else
+                {
+                    Array currentBlocker = blockers[i];
+                    for (int j = 0; j < currentBlocker.Count; j++)
+                    {
+                        currentBlocker[j].blocker.SetActive(false);
+                    }
                 }
             }
         }
     }
-    
+
     /// <summary>
     /// Moves randomly in the room, entrance is blocked if too close.
     /// </summary>
     private void RandomMove()
     {
-        
+        BlockEntrance();
+        if (firstEncounter)
+        {
+            moveSpeed = 1f;
+            targetPosition = new Vector3(Random.Range(minX, maxX), transform.position.y, Random.Range(minZ, maxZ));
+            isMoving = true;
+            firstEncounter = false;
+        }
+
+        if (Vector3.Distance(transform.position, targetPosition) < 0.1f && !isMoving)
+        {
+            // Pick a new random target position
+            targetPosition = new Vector3(Random.Range(minX, maxX), transform.position.y, Random.Range(minZ, maxZ));
+            isMoving = true;
+        }
+
+        if (isMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+            {
+                isMoving = false;
+            }
+        }
     }
-    
+
     /// <summary>
     /// Hits the drawers, makes them open, runs to a corner and blocks itself with breakable wall.
     /// </summary>
     private void HitDrawerAndBlock()
     {
-        
+        if (firstEncounter)
+        {
+            level4Animation.SetTrigger("Start");
+            firstEncounter = false;
+        }
     }
-    
+
     /// <summary>
     /// Needs to be constructed - what happands when the paper is thrown in.
     /// </summary>
     private void FinalDialog()
     {
-        
+    }
+    
+    public void BuildWall()
+    {
     }
 }
