@@ -44,7 +44,8 @@ public class Trash : MonoBehaviour
     [SerializeField] private Transform level2Pos;
     [SerializeField] private Matrix blockers;
     [SerializeField] private GameObject entranceBlocker;
-    [SerializeField] private Animator level4Animation;
+    [SerializeField] private GameObject wallCover;
+    [SerializeField] private Transform level4Start;
     private Transform playerTransform;
     private Vector3 targetPosition;
 
@@ -58,10 +59,11 @@ public class Trash : MonoBehaviour
     private void Start()
     {
         gameStatesFunctions.AddRange(new Action[]
-            { Idle, RunAwayToTheCorner, BlockEntrance, RandomMove, HitDrawerAndBlock, FinalDialog });
+            { Idle, RunAwayToTheCorner, BlockEntrance, RandomMove,HideUnderTable, HideInWall, FinalDialog });
         playerTransform = GameManager.Instance.player.transform;
         targetPosition = leftCorner.position;
         entranceBlocker.SetActive(false);
+        wallCover.SetActive(false);
     }
 
     // Update is called once per frame
@@ -196,17 +198,28 @@ public class Trash : MonoBehaviour
             }
         }
     }
-
+    
     /// <summary>
-    /// Hits the drawers, makes them open, runs to a corner and blocks itself with breakable wall.
+    /// Runs under the table. Next paper will be under the table
     /// </summary>
-    private void HitDrawerAndBlock()
+    private void HideUnderTable()
     {
         if (firstEncounter)
         {
-            level4Animation.SetTrigger("Start");
-            firstEncounter = false;
+            transform.position = Vector3.MoveTowards(transform.position, level4Start.position, moveSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, leftCorner.position) < 0.1f)
+            {
+                firstEncounter = false;
+            }
         }
+    }
+
+    /// <summary>
+    /// Hits the drawers, makes them open, runs to a corner and blocks itself with breakable wall. - happands in LevelManager
+    /// </summary>
+    private void HideInWall()
+    {
+       // TODO: Everytime the player is close, make Sound
     }
 
     /// <summary>
@@ -218,5 +231,7 @@ public class Trash : MonoBehaviour
     
     public void BuildWall()
     {
+        // make each wall fade in
+        wallCover.SetActive(true);
     }
 }

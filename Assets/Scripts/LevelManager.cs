@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
     {
         if (test)
         {
-            LevelSetup(4);
+            LevelSetup(5);
         }
     }
 
@@ -39,6 +39,10 @@ public class LevelManager : MonoBehaviour
             GameManager.Instance.SetupReady = true;
         }
         else if (level == 4)
+        {
+            GameManager.Instance.SetupReady = true;
+        }
+        else if (level == 5)
         {
             RunAndHideInABox();
         }
