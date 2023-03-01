@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 283780748}
   - component: {fileID: 283780751}
   - component: {fileID: 283780750}
-  - component: {fileID: 283780749}
+  - component: {fileID: 345036790415942419}
   m_Layer: 0
   m_Name: Opened
   m_TagString: Paper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &283780748
 Transform:
   m_ObjectHideFlags: 0
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &283780749
-MeshCollider:
+--- !u!65 &345036790415942419
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,10 +94,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 2
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0.0000009536743, z: 0}
 --- !u!1001 &5402034720628216770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,15 +110,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72e4bb9904b819a41a75924b1dd2b270, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.07917
+      value: 0.05046216
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72e4bb9904b819a41a75924b1dd2b270, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.07917
+      value: 0.05046216
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72e4bb9904b819a41a75924b1dd2b270, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.07917
+      value: 0.05046216
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 72e4bb9904b819a41a75924b1dd2b270, type: 3}
       propertyPath: m_LocalPosition.x
@@ -167,7 +166,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f7b6b12db9e0c154aa56bc9e15a0e5db, type: 2}
     - target: {fileID: 919132149155446097, guid: 72e4bb9904b819a41a75924b1dd2b270, type: 3}
       propertyPath: m_Name
-      value: PaperExample
+      value: PaperExample Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 72e4bb9904b819a41a75924b1dd2b270, type: 3}
       propertyPath: m_TagString
@@ -230,7 +229,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5059380923612671635}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -253,12 +252,12 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders:
   - {fileID: 1546012999}
-  - {fileID: 283780749}
+  - {fileID: 345036790415942419}
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 1
+    m_Bits: 2
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
@@ -380,6 +379,10 @@ MonoBehaviour:
   paperRenderer: {fileID: 6701349406042380463}
   openedPaper: {fileID: 283780747}
   closedPaper: {fileID: 4304108380771931722}
+  paperLayerMask:
+    m_Bits: 2
+  openedPaperLayerMask:
+    m_Bits: 4
 --- !u!4 &5583716456125854761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 72e4bb9904b819a41a75924b1dd2b270, type: 3}

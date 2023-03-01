@@ -7,6 +7,8 @@ using Utils;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] private Animator level4Animation;
+    [SerializeField] private PaperSocket[] paperSockets;
+    [SerializeField] private GameObject jungle;
     public bool test;
     
     public static LevelManager instance;
@@ -16,9 +18,17 @@ public class LevelManager : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        foreach (var socket in paperSockets)
+        {
+            socket.gameObject.SetActive(false);
+        }
+    }
+
     private void Update()
     {
-        if (test)
+        if (test) // JUST FOR TESTING
         {
             LevelSetup(5);
         }
@@ -26,8 +36,11 @@ public class LevelManager : MonoBehaviour
 
     public void LevelSetup(int level)
     {
+        paperSockets[level - 1].gameObject.SetActive(true);
+
         if (level == 1)
         {
+            jungle.SetActive(true); // Should change this to animation, make a new paper appear with this one.
             GameManager.Instance.SetupReady = true;
         }
         else if (level == 2)

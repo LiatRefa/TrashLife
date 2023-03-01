@@ -19,7 +19,7 @@ public class TrashTrigger : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (0 < coolDownCounter)
+        if (0 < coolDownCounter) // Because after we hit the trigger it hits it multiple times, so we need a short cooldown until the object exited
         {
             return;
         }
@@ -32,7 +32,8 @@ public class TrashTrigger : MonoBehaviour
             Paper paper = other.gameObject.transform.parent.GetComponent<Paper>();
             paper.GetComponent<Rigidbody>().AddForce(-Camera.main.gameObject.transform.forward * paperForcePush);
             paper.OpenPaper();
-            GameManager.Instance.NextLevel();
+            if(!paper.wasOpened)
+                GameManager.Instance.NextLevel();
             StartCoroutine(CollisionEnable(other));
             coolDownCounter = coolDownTime;
 

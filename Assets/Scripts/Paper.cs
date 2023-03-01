@@ -14,6 +14,8 @@ public class Paper : MonoBehaviour
    public InteractionLayerMask paperLayerMask;
    public InteractionLayerMask openedPaperLayerMask;
 
+   public bool wasOpened;
+
    public void Start()
    {
       closedPaper.SetActive(true);
@@ -26,6 +28,7 @@ public class Paper : MonoBehaviour
    public void OpenPaper()
    {
       // Todo: Add paper open sound
+      wasOpened = true;
       closedPaper.SetActive(false);
       openedPaper.SetActive(true);
       openedPaper.GetComponent<Renderer>().material.SetTexture("_MainTex", paperTxt);
