@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
 using FMODUnity;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.XR.Interaction.Toolkit;
 using Object = UnityEngine.Object;
-
+using Utils;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -16,10 +17,16 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Animator _startAnimator;
     private float gameTimer;
     private float maxTime = 60 * 10f; // 10 mins
-    [SerializeField] private GameObject player;
+    public GameObject player;
     [SerializeField] private XRDirectInteractor LeftHand;
     [SerializeField] private XRDirectInteractor RightHand;
+    [SerializeField] private LevelManager levelManager;
     public StudioEventEmitter EventEmitter;
+    public SerializableStack<Texture> paperTextures; // In case we decide to use a stack for the textures instead of the papers themselves
+    public Trash trash;
+
+    public int gameState = 0;
+    public bool SetupReady { get; set; }
 
     public enum Scenes
     {
@@ -41,10 +48,23 @@ public class GameManager : Singleton<GameManager>
     }
     void OnMainSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Invoke("StupidThing", 2);
         if (scene.name == "MAIN")
         {
             LoadScene(Scenes.MainMenu);
-            Invoke("StupidThing", 2);
+        }
+        // if (scene.name == "MainOffice")
+        // {
+        //     StartCoroutine(WaitForLevelManager());
+        // }
+        
+    }
+    
+    private IEnumerator WaitForLevelManager()
+    {
+        while (LevelManager.instance == null)
+        {
+            yield return null;
         }
     }
 
@@ -96,13 +116,21 @@ public class GameManager : Singleton<GameManager>
     public void Restart()
     {
         TeleportManager.Instance.ActivateTeleportation(false);
-        AudioManager.Instance.StopSound(AudioManager.Sounds.MainLoop);
+        // AudioManager.Instance.StopSound(AudioManager.Sounds.MainLoop);
         // player.transform.position = roomMainSSpawnPoint.position;
         // LoadScene(Scenes.MainMenu);
     }
 
     public void Win()
     {
-        AudioManager.Instance.PlaySound(AudioManager.Sounds.Win);
+        // AudioManager.Instance.PlaySound(AudioManager.Sounds.Win);
+    }
+
+    public void NextLevel()
+    {
+        SetupReady = false;
+        gameState += 1;
+        LevelManager.instance.LevelSetup(gameState);
+        trash.firstEncounter = true;
     }
 }

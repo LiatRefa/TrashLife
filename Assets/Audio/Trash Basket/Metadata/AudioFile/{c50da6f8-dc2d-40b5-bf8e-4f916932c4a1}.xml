@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{c50da6f8-dc2d-40b5-bf8e-4f916932c4a1}">
+		<property name="assetPath">
+			<value>trash_happy3.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.8980725623582766</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2458dc13-5d6e-47df-b35f-7bab8bdb4952}</destination>
+		</relationship>
+	</object>
+</objects>

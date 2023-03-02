@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{cf565b45-f98a-4c12-a8eb-1cc8773cbf19}">
+		<property name="assetPath">
+			<value>Paper Shreeder 2.ogg</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>77.267709750566894</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2458dc13-5d6e-47df-b35f-7bab8bdb4952}</destination>
+		</relationship>
+	</object>
+</objects>
