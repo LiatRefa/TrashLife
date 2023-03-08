@@ -37,6 +37,8 @@ public class TrashTrigger : MonoBehaviour
             StartCoroutine(CollisionEnable(other));
             coolDownCounter = coolDownTime;
 
+            LevelManager.instance.curr_level++;
+            LevelManager.instance.LevelSetup();
         }
 
         else

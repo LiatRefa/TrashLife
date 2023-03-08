@@ -32,7 +32,7 @@ public class GameManager : Singleton<GameManager>
     {
         MAIN,
         MainMenu,
-        EscapeRoom,
+        Office,
         Final
     }
     
@@ -130,7 +130,7 @@ public class GameManager : Singleton<GameManager>
     {
         SetupReady = false;
         gameState += 1;
-        LevelManager.instance.LevelSetup(gameState);
+        LevelManager.instance.LevelSetup();
         trash.firstEncounter = true;
     }
 }

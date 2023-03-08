@@ -6,16 +6,38 @@ using Utils;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] private Animator jungleAnimation;
     [SerializeField] private Animator level4Animation;
     [SerializeField] private PaperSocket[] paperSockets;
     [SerializeField] private GameObject jungle;
-    public bool test;
+    public bool test = true;
+    public int curr_level = 0;
     
     public static LevelManager instance;
+    public static LevelManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<LevelManager>();
+            }
+            return instance;
+        }
+    }
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+            //DontDestroyOnLoad(this.gameObject);
+        }
+
     }
 
     private void Start()
@@ -24,38 +46,41 @@ public class LevelManager : MonoBehaviour
         {
             socket.gameObject.SetActive(false);
         }
+
     }
 
     private void Update()
     {
-        if (test) // JUST FOR TESTING
-        {
-            LevelSetup(5);
-        }
+
+        //if (test) // JUST FOR TESTING
+        //{
+        //    LevelSetup();
+        //}
     }
 
-    public void LevelSetup(int level)
+    public void LevelSetup()
     {
-        paperSockets[level - 1].gameObject.SetActive(true);
+      //  paperSockets[curr_level - 1].gameObject.SetActive(true);
 
-        if (level == 1)
+        if (curr_level == 1)
         {
-            jungle.SetActive(true); // Should change this to animation, make a new paper appear with this one.
+            //  jungle.SetActive(true); // Should change this to animation, make a new paper appear with this one.
+            JungleArise();
             GameManager.Instance.SetupReady = true;
         }
-        else if (level == 2)
-        {
-            GameManager.Instance.SetupReady = true;
-        }
-        else if (level == 3)
+        else if (curr_level == 2)
         {
             GameManager.Instance.SetupReady = true;
         }
-        else if (level == 4)
+        else if (curr_level == 3)
         {
             GameManager.Instance.SetupReady = true;
         }
-        else if (level == 5)
+        else if (curr_level == 4)
+        {
+            GameManager.Instance.SetupReady = true;
+        }
+        else if (curr_level == 5)
         {
             RunAndHideInABox();
         }
@@ -65,6 +90,13 @@ public class LevelManager : MonoBehaviour
     {
         level4Animation.SetTrigger("Start");
         StartCoroutine(WaitForAnimation(level4Animation));
+    }
+
+    private void JungleArise()
+    {
+        jungleAnimation.SetTrigger("jungle_arise");
+        StartCoroutine(WaitForAnimation(jungleAnimation));
+
     }
 
     private IEnumerator WaitForAnimation(Animator animator)
