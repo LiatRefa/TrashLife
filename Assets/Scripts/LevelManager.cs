@@ -58,6 +58,12 @@ public class LevelManager : MonoBehaviour
         //}
     }
 
+    /* BIG TO DO:
+    OPENING SCREEN
+    LIST CONTAINS ALL PAPER OBJECTS, WITH THE STORY ON THEM
+    SOCKET FIX
+     
+     */
     public void LevelSetup()
     {
       //  paperSockets[curr_level - 1].gameObject.SetActive(true);
@@ -65,15 +71,26 @@ public class LevelManager : MonoBehaviour
         if (curr_level == 1)
         {
             //  jungle.SetActive(true); // Should change this to animation, make a new paper appear with this one.
-            JungleArise();
+         //   JungleArise();
             GameManager.Instance.SetupReady = true;
         }
         else if (curr_level == 2)
         {
+            /* 
+            TODO:
+            Jungle Fade animation(sinking back maybe?)
+            DARKNESS ALL BUT 2 LIGHTS 
+            */
             GameManager.Instance.SetupReady = true;
         }
         else if (curr_level == 3)
         {
+            /* TODO: 
+             * Light rise again
+             * PLAYER SMALL (ANIMATION?)
+             * paper appears under the table.
+             
+             */
             GameManager.Instance.SetupReady = true;
         }
         else if (curr_level == 4)

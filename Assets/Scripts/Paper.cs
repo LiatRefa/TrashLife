@@ -27,7 +27,7 @@ public class Paper : MonoBehaviour
 
    public void OpenPaper()
    {
-      // Todo: Add paper open sound
+        // Todo: Add paper open sound
       wasOpened = true;
       closedPaper.SetActive(false);
       openedPaper.SetActive(true);

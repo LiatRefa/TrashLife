@@ -32,13 +32,17 @@ public class TrashTrigger : MonoBehaviour
             Paper paper = other.gameObject.transform.parent.GetComponent<Paper>();
             paper.GetComponent<Rigidbody>().AddForce(-Camera.main.gameObject.transform.forward * paperForcePush);
             paper.OpenPaper();
-            if(!paper.wasOpened)
-                GameManager.Instance.NextLevel();
+            if (paper.wasOpened)
+            {
+                Debug.Log("OPENED?");
+                LevelManager.instance.curr_level++;
+                LevelManager.instance.LevelSetup();
+            }
+            
             StartCoroutine(CollisionEnable(other));
             coolDownCounter = coolDownTime;
 
-            LevelManager.instance.curr_level++;
-            LevelManager.instance.LevelSetup();
+            
         }
 
         else
