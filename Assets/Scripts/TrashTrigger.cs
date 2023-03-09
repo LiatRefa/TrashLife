@@ -5,16 +5,23 @@ using Unity.VisualScripting;
 using UnityEngine;
 using InteractableItems;
 
+
 public class TrashTrigger : MonoBehaviour
 {
     public float paperForcePush = 100f;
     private float coolDownTime = 120f;
     private float coolDownCounter;
+    public Transform player;
 
 
     private void Update()
     {
         coolDownCounter -= Time.deltaTime;
+    }
+
+    private void Start()
+    {
+        player = FindObjectOfType<Camera>().transform;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -24,21 +31,19 @@ public class TrashTrigger : MonoBehaviour
             return;
         }
 
-        Debug.Log("Entered");
         if (other.CompareTag("Paper"))
         {
-            Debug.Log("Papaer Entered");
             CollisionDisable(other);
+            Vector3 direction = (player.position - transform.position).normalized;
             Paper paper = other.gameObject.transform.parent.GetComponent<Paper>();
-            paper.GetComponent<Rigidbody>().AddForce(-Camera.main.gameObject.transform.forward * paperForcePush);
+            paper.GetComponent<Rigidbody>().AddForce(Vector3.up * paperForcePush * Time.deltaTime, ForceMode.Impulse);
+            paper.GetComponent<Rigidbody>().AddForce(direction * paperForcePush * Time.deltaTime, ForceMode.Impulse);
             paper.OpenPaper();
             if (paper.wasOpened)
             {
-                Debug.Log("OPENED?");
                 LevelManager.instance.curr_level++;
                 LevelManager.instance.LevelSetup();
             }
-            
             StartCoroutine(CollisionEnable(other));
             coolDownCounter = coolDownTime;
 
@@ -57,12 +62,15 @@ public class TrashTrigger : MonoBehaviour
     private IEnumerator CollisionEnable(Collider other)
     {
         yield return new WaitForSeconds(2);
-        Physics.IgnoreCollision(other, transform.parent.GetComponent<Collider>(), false);
+        //Physics.IgnoreCollision(other, transform.parent.GetComponent<Collider>(), false);
+        Physics.IgnoreLayerCollision(10, 11, false);
     }
 
     private void CollisionDisable(Collider other)
     {
-        Physics.IgnoreCollision(other, transform.parent.GetComponent<Collider>());
+        Debug.Log("?!?");
+        //Physics.IgnoreCollision(other, transform.parent.GetComponent<Collider>());
+        Physics.IgnoreLayerCollision(10, 11, true);
     }
 
    

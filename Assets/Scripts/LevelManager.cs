@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Animator level4Animation;
     [SerializeField] private PaperSocket[] paperSockets;
     [SerializeField] private GameObject jungle;
+    [SerializeField] private Paper[] papersList;
+   // [SerializeField] private GameObject[] closedPapers;
     public bool test = true;
     public int curr_level = 0;
     
@@ -46,6 +48,11 @@ public class LevelManager : MonoBehaviour
         {
             socket.gameObject.SetActive(false);
         }
+        for (int i = 1; i < papersList.Length; i++)
+        {
+            Debug.Log("HELLO");
+            papersList[i].gameObject.SetActive(false);  
+        }
 
     }
 
@@ -70,8 +77,8 @@ public class LevelManager : MonoBehaviour
 
         if (curr_level == 1)
         {
-            //  jungle.SetActive(true); // Should change this to animation, make a new paper appear with this one.
-         //   JungleArise();
+            JungleArise();
+            papersList[1].gameObject.SetActive(true);
             GameManager.Instance.SetupReady = true;
         }
         else if (curr_level == 2)
@@ -81,6 +88,8 @@ public class LevelManager : MonoBehaviour
             Jungle Fade animation(sinking back maybe?)
             DARKNESS ALL BUT 2 LIGHTS 
             */
+            JungleOut();
+            jungle.SetActive(false);
             GameManager.Instance.SetupReady = true;
         }
         else if (curr_level == 3)
@@ -112,6 +121,13 @@ public class LevelManager : MonoBehaviour
     private void JungleArise()
     {
         jungleAnimation.SetTrigger("jungle_arise");
+        StartCoroutine(WaitForAnimation(jungleAnimation));
+
+    }
+
+    private void JungleOut()
+    {
+        jungleAnimation.SetTrigger("jungle_out");
         StartCoroutine(WaitForAnimation(jungleAnimation));
 
     }

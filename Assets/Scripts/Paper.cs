@@ -20,7 +20,7 @@ public class Paper : MonoBehaviour
    {
       closedPaper.SetActive(true);
       openedPaper.SetActive(false);
-      paperTxt = paperRenderer.material.GetTexture("_MainTex");
+      //paperTxt = paperRenderer.material.GetTexture("_MainTex");
       GetComponent<XRGrabInteractable>().interactionLayers = paperLayerMask;
       
    }
@@ -31,7 +31,7 @@ public class Paper : MonoBehaviour
       wasOpened = true;
       closedPaper.SetActive(false);
       openedPaper.SetActive(true);
-      openedPaper.GetComponent<Renderer>().material.SetTexture("_MainTex", paperTxt);
+      //openedPaper.GetComponent<Renderer>().material.SetTexture("_MainTex", paperTxt);
       GetComponent<XRGrabInteractable>().interactionLayers = openedPaperLayerMask;
    }
 }
