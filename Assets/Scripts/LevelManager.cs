@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 
 public class LevelManager : MonoBehaviour
@@ -50,7 +51,6 @@ public class LevelManager : MonoBehaviour
         }
         for (int i = 1; i < papersList.Length; i++)
         {
-            Debug.Log("HELLO");
             papersList[i].gameObject.SetActive(false);  
         }
 
@@ -73,24 +73,21 @@ public class LevelManager : MonoBehaviour
      */
     public void LevelSetup()
     {
-      //  paperSockets[curr_level - 1].gameObject.SetActive(true);
+        paperSockets[curr_level - 1].gameObject.SetActive(true);
 
         if (curr_level == 1)
         {
             JungleArise();
             papersList[1].gameObject.SetActive(true);
-            GameManager.Instance.SetupReady = true;
+       
         }
         else if (curr_level == 2)
         {
-            /* 
-            TODO:
-            Jungle Fade animation(sinking back maybe?)
-            DARKNESS ALL BUT 2 LIGHTS 
-            */
             JungleOut();
             jungle.SetActive(false);
-            GameManager.Instance.SetupReady = true;
+            SceneManager.LoadScene(1);
+            // NEEDS TO ADD THE NEXT PAPER - IN THE NEXT SCENE?
+            papersList[2].gameObject.SetActive(true);
         }
         else if (curr_level == 3)
         {
@@ -98,7 +95,6 @@ public class LevelManager : MonoBehaviour
              * Light rise again
              * PLAYER SMALL (ANIMATION?)
              * paper appears under the table.
-             
              */
             GameManager.Instance.SetupReady = true;
         }

@@ -68,7 +68,6 @@ public class TrashTrigger : MonoBehaviour
 
     private void CollisionDisable(Collider other)
     {
-        Debug.Log("?!?");
         //Physics.IgnoreCollision(other, transform.parent.GetComponent<Collider>());
         Physics.IgnoreLayerCollision(10, 11, true);
     }

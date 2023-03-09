@@ -71,7 +71,7 @@ public class Trash : MonoBehaviour
     {
         playerTransform = GameManager.Instance.player.transform;
         if(!GameManager.Instance.SetupReady) return;
-        gameStatesFunctions[GameManager.Instance.gameState]();
+        gameStatesFunctions[LevelManager.Instance.curr_level]();
     }
 
     /// <summary>
