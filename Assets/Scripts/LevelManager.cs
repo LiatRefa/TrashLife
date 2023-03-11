@@ -12,7 +12,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PaperSocket[] paperSockets;
     [SerializeField] private GameObject jungle;
     [SerializeField] private Paper[] papersList;
-   // [SerializeField] private GameObject[] closedPapers;
+    [SerializeField] private Darkness darkness;
+    [SerializeField] private Smaller smaller;
     public bool test = true;
     public int curr_level = 0;
     
@@ -59,17 +60,12 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
 
-        //if (test) // JUST FOR TESTING
-        //{
-        //    LevelSetup();
-        //}
     }
 
     /* BIG TO DO:
     OPENING SCREEN
-    LIST CONTAINS ALL PAPER OBJECTS, WITH THE STORY ON THEM
-    SOCKET FIX
-     
+    Boss Dialouge
+   
      */
     public void LevelSetup()
     {
@@ -79,28 +75,29 @@ public class LevelManager : MonoBehaviour
         {
             JungleArise();
             papersList[1].gameObject.SetActive(true);
-       
+           
         }
         else if (curr_level == 2)
         {
             JungleOut();
             jungle.SetActive(false);
-            SceneManager.LoadScene(1);
-            // NEEDS TO ADD THE NEXT PAPER - IN THE NEXT SCENE?
+            darkness.turnLights(false);
             papersList[2].gameObject.SetActive(true);
         }
         else if (curr_level == 3)
         {
             /* TODO: 
-             * Light rise again
              * PLAYER SMALL (ANIMATION?)
              * paper appears under the table.
              */
-            GameManager.Instance.SetupReady = true;
+            darkness.turnLights(true);
+            smaller.ChangeSize(true);
+            papersList[3].gameObject.SetActive(true);
         }
         else if (curr_level == 4)
         {
-            GameManager.Instance.SetupReady = true;
+            smaller.ChangeSize(false);
+
         }
         else if (curr_level == 5)
         {
@@ -116,6 +113,7 @@ public class LevelManager : MonoBehaviour
 
     private void JungleArise()
     {
+        AudioManager.Instance.PlayOneShotAttach(AudioManager.Sounds.TreeRising, gameObject);
         jungleAnimation.SetTrigger("jungle_arise");
         StartCoroutine(WaitForAnimation(jungleAnimation));
 
@@ -137,4 +135,6 @@ public class LevelManager : MonoBehaviour
 
         GameManager.Instance.SetupReady = true;
     }
+
+
 }

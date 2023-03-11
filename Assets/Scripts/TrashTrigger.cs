@@ -38,6 +38,7 @@ public class TrashTrigger : MonoBehaviour
             Paper paper = other.gameObject.transform.parent.GetComponent<Paper>();
             paper.GetComponent<Rigidbody>().AddForce(Vector3.up * paperForcePush * Time.deltaTime, ForceMode.Impulse);
             paper.GetComponent<Rigidbody>().AddForce(direction * paperForcePush * Time.deltaTime, ForceMode.Impulse);
+            AudioManager.Instance.PlaySound(AudioManager.Sounds.TrashThrowOut);
             paper.OpenPaper();
             if (paper.wasOpened)
             {
@@ -62,13 +63,11 @@ public class TrashTrigger : MonoBehaviour
     private IEnumerator CollisionEnable(Collider other)
     {
         yield return new WaitForSeconds(2);
-        //Physics.IgnoreCollision(other, transform.parent.GetComponent<Collider>(), false);
         Physics.IgnoreLayerCollision(10, 11, false);
     }
 
     private void CollisionDisable(Collider other)
     {
-        //Physics.IgnoreCollision(other, transform.parent.GetComponent<Collider>());
         Physics.IgnoreLayerCollision(10, 11, true);
     }
 

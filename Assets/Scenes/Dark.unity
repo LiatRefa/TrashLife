@@ -4225,7 +4225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &847500839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4275,12 +4275,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df46b3e483b66cc4781585378d126575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1159855924}
   LeftHand: {fileID: 1812432483}
   RightHand: {fileID: 1185857801}
   EventEmitter: {fileID: 59637381}
-  paperTextures:
-    data: []
 --- !u!1001 &865034636
 PrefabInstance:
   m_ObjectHideFlags: 0

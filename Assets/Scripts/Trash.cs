@@ -59,7 +59,7 @@ public class Trash : MonoBehaviour
     private void Start()
     {
         gameStatesFunctions.AddRange(new Action[]
-            { Idle, RunAwayToTheCorner, BlockEntrance, RandomMove,HideUnderTable, HideInWall, FinalDialog });
+            { Idle, RunAwayToTheCorner, RandomMove, BlockEntrance, HideUnderTable, HideInWall, FinalDialog });
         playerTransform = GameManager.Instance.player.transform;
         targetPosition = leftCorner.position;
         entranceBlocker.SetActive(false);

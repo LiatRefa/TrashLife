@@ -22,7 +22,10 @@ public class AudioManager : Singleton<AudioManager>
         TrashSad,
         TrashThrowIn,
         TrashThrowOut,
-        LandSound
+        LandSound,
+        TreeLeaves,
+        TreeRising,
+        Teleport
         
     }
 

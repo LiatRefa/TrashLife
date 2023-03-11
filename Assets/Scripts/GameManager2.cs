@@ -9,11 +9,11 @@ using UnityEngine.SceneManagement;
 public class GameManager2 : MonoBehaviour
 {
     private static GameManager2 instance;
-    public GameObject player;
+   // public GameObject player;
     [SerializeField] private XRDirectInteractor LeftHand;
     [SerializeField] private XRDirectInteractor RightHand;
     public StudioEventEmitter EventEmitter;
-    public SerializableStack<Texture> paperTextures; // In case we decide to use a stack for the textures instead of the papers themselves
+   // public SerializableStack<Texture> paperTextures; // In case we decide to use a stack for the textures instead of the papers themselves
     public bool SetupReady { get; set; }
 
     public enum Scenes
