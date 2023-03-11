@@ -86,21 +86,18 @@ public class LevelManager : MonoBehaviour
         }
         else if (curr_level == 3)
         {
-            /* TODO: 
-             * PLAYER SMALL (ANIMATION?)
-             * paper appears under the table.
-             */
             darkness.turnLights(true);
-            smaller.ChangeSize(true);
-            papersList[3].gameObject.SetActive(true);
+            // To implement: Zero Gravity
         }
         else if (curr_level == 4)
         {
-            smaller.ChangeSize(false);
+            smaller.ChangeSize(true);
+            papersList[3].gameObject.SetActive(true);
 
         }
         else if (curr_level == 5)
         {
+            smaller.ChangeSize(false);
             RunAndHideInABox();
         }
     }
