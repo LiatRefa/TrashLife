@@ -350,8 +350,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../Trash game VR FMOD/Trash Basket/Trash Basket.fspro
-  sourceBankPath: ../Trash game VR FMOD/Trash Basket/Build
+  sourceProjectPath: Assets/Audio/Trash Basket/Trash Basket.fspro
+  sourceBankPath: Assets/Audio/Trash Basket/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

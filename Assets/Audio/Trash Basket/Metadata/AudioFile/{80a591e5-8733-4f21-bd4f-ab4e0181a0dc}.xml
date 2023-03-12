@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{80a591e5-8733-4f21-bd4f-ab4e0181a0dc}">
+		<property name="assetPath">
+			<value>paper_open v2.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.6410430839002268</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{2458dc13-5d6e-47df-b35f-7bab8bdb4952}</destination>
+		</relationship>
+	</object>
+</objects>
