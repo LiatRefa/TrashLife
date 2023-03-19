@@ -4369,6 +4369,7 @@ MonoBehaviour:
   LeftHand: {fileID: 1812432483}
   RightHand: {fileID: 1185857801}
   EventEmitter: {fileID: 59637381}
+  trash: {fileID: 1400498571}
 --- !u!1001 &865034636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7753,7 +7754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[0].Path
-      value: event:/Ambience/ambience_office
+      value: event:/Ambience/changing-ambience
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[1].Path
@@ -7773,7 +7774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[5].Path
-      value: event:/SFX/Trash/trash_sad
+      value: event:/SFX/Trash/trash_sad-optional
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[6].Path
@@ -7785,15 +7786,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[8].Path
-      value: event:/SFX/Trash/trash_throwsback_land
+      value: event:/SFX/Trash/trash_throwing-in
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[9].Path
-      value: event:/SFX/Jungle/tree_leaves
+      value: event:/SFX/Level 02  - Forest/tree_leaves-optional
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[10].Path
-      value: event:/SFX/Jungle/tree_rising
+      value: event:/SFX/Level 02  - Forest/tree_rising
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[11].Path
@@ -7929,19 +7930,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[8].Guid.Data1
-      value: -2124756371
+      value: -2074514969
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[8].Guid.Data2
-      value: 1121916604
+      value: 1325074969
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[8].Guid.Data3
-      value: -1125410172
+      value: 317725596
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[8].Guid.Data4
-      value: 2106016916
+      value: 1236101940
       objectReference: {fileID: 0}
     - target: {fileID: 9019427505539202390, guid: a726655c0289482449535855b8632b22, type: 3}
       propertyPath: eventReferences.Array.data[9].Guid.Data1
@@ -8949,7 +8950,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b9cce77de3643c447be04f8c7e9ab4b7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -9752,15 +9753,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5583716456125854761, guid: cac2cadec6715ed44bad8e4ee23a9b39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.9029322
+      value: -1.562684
       objectReference: {fileID: 0}
     - target: {fileID: 5583716456125854761, guid: cac2cadec6715ed44bad8e4ee23a9b39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9784401
+      value: 0.5948842
       objectReference: {fileID: 0}
     - target: {fileID: 5583716456125854761, guid: cac2cadec6715ed44bad8e4ee23a9b39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.3568783
+      value: -2.8130505
       objectReference: {fileID: 0}
     - target: {fileID: 5583716456125854761, guid: cac2cadec6715ed44bad8e4ee23a9b39, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10319,7 +10320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1594615727
 AudioListener:
   m_ObjectHideFlags: 0
@@ -12631,7 +12632,7 @@ MonoBehaviour:
   darkness: {fileID: 1346054832}
   smaller: {fileID: 1622974286}
   test: 0
-  curr_level: 2
+  curr_level: 0
 --- !u!4 &2088039455
 Transform:
   m_ObjectHideFlags: 0

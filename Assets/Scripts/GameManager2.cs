@@ -15,6 +15,7 @@ public class GameManager2 : MonoBehaviour
     public StudioEventEmitter EventEmitter;
    // public SerializableStack<Texture> paperTextures; // In case we decide to use a stack for the textures instead of the papers themselves
     public bool SetupReady { get; set; }
+  public Trash trash;
 
     public enum Scenes
     {

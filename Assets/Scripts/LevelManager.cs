@@ -69,6 +69,7 @@ public class LevelManager : MonoBehaviour
      */
     public void LevelSetup()
     {
+	GameManager2.Instance.trash.firstEncounter = true;
         paperSockets[curr_level - 1].gameObject.SetActive(true);
 
         if (curr_level == 1)
@@ -83,16 +84,20 @@ public class LevelManager : MonoBehaviour
             jungle.SetActive(false);
             darkness.turnLights(false);
             papersList[2].gameObject.SetActive(true);
+        GameManager2.Instance.SetupReady = true;
+		
         }
         else if (curr_level == 3)
         {
             darkness.turnLights(true);
             // To implement: Zero Gravity
+        GameManager2.Instance.SetupReady = true;
         }
         else if (curr_level == 4)
         {
             smaller.ChangeSize(true);
             papersList[3].gameObject.SetActive(true);
+        GameManager2.Instance.SetupReady = true;
 
         }
         else if (curr_level == 5)
@@ -130,7 +135,7 @@ public class LevelManager : MonoBehaviour
             yield return null;
         }
 
-        GameManager.Instance.SetupReady = true;
+        GameManager2.Instance.SetupReady = true;
     }
 
 
